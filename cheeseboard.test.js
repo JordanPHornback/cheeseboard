@@ -37,7 +37,7 @@ describe('Cheeseboard models', () => {
         expect(testCheese.title).toBe('Raclette du Valais');
     });
 
-    test('Can create a cheese - title', async () => {
+    test('Can create a cheese - description', async () => {
         const testCheese = await Cheese.create({title: 'Raclette du Valais', description: 'Raclette du Valais is a semi-hard cheese from the Valais canton of Switzerland. This is an Alpine cow milk based cheese, most commonly used for a melting dish called raclette, but can also be consumed as is!'});
         expect(testCheese.description).toBe('Raclette du Valais is a semi-hard cheese from the Valais canton of Switzerland. This is an Alpine cow milk based cheese, most commonly used for a melting dish called raclette, but can also be consumed as is!');
     });
@@ -70,9 +70,9 @@ describe('Cheeseboard models', () => {
 
         const cheese1 = await Cheese.create({title: 'Raclette du Valais', description: 'Raclette du Valais is a semi-hard cheese from the Valais canton of Switzerland. This is an Alpine cow milk based cheese, most commonly used for a melting dish called raclette, but can also be consumed as is!'});
 
-        const cheese2 = await Cheese.create({title: 'Asiago', description: 'Asiago is a cows milk cheese, first produced in Italy. In Italy, Asiage has a protected designation of origin, as it was originally produced in the alpine area of the Asiago plateau. Asiago is excellent for many uses, inclduing on sandwiches or paninis, or melted over a variety of dishes (even canteloupe).'});
+        const cheese2 = await Cheese.create({title: 'Asiago', description: 'Asiago is a cows milk cheese, first produced in Italy. In Italy, Asiago has a protected designation of origin, as it was originally produced in the alpine area of the Asiago plateau. Asiago is excellent for many uses, inclduing on sandwiches or paninis, or melted over a variety of dishes (even canteloupe).'});
         
-        const cheese3 = await Cheese.create({title: 'Mozzarella', description: 'Mozzarella is a very versatile cheese, best served fresh due to its high moisture content. Mozzarella is most commonly used for pizza and pasta dishes, as well as serverd with slived tomatoes and basil in Caprese salad.'})
+        const cheese3 = await Cheese.create({title: 'Mozzarella', description: 'Mozzarella is a very versatile cheese, best served fresh due to its high moisture content. Mozzarella is most commonly used for pizza and pasta dishes, as well as serverd with sliced tomatoes and basil in Caprese salad.'})
 
         await board1.addCheese(cheese2);
         await board1.addCheese(cheese3);
