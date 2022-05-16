@@ -92,4 +92,31 @@ describe('Cheeseboard models', () => {
         expect(Board.belongsToMany(Cheese, { through: 'Cheeseboard'})).toBeTruthy
     });
 
+    test('Board/Cheese Eager Loading', async () => {
+        const board1 = await Board.create({type: 'Italian', description: 'A board of cheese from Italy', rating: 10});
+
+        const board2 = await Board.create({type: 'Alpine', description: 'A board of cheeses from the Alps', rating: 9});
+
+        const cheese1 = await Cheese.create({title: 'Raclette du Valais', description: 'Raclette du Valais is a semi-hard cheese from the Valais canton of Switzerland. This is an Alpine cow milk based cheese, most commonly used for a melting dish called raclette, but can also be consumed as is!'});
+
+        const cheese2 = await Cheese.create({title: 'Asiago', description: 'Asiago is a cows milk cheese, first produced in Italy. In Italy, Asiago has a protected designation of origin, as it was originally produced in the alpine area of the Asiago plateau. Asiago is excellent for many uses, inclduing on sandwiches or paninis, or melted over a variety of dishes (even canteloupe).'});
+        
+        const cheese3 = await Cheese.create({title: 'Mozzarella', description: 'Mozzarella is a very versatile cheese, best served fresh due to its high moisture content. Mozzarella is most commonly used for pizza and pasta dishes, as well as serverd with sliced tomatoes and basil in Caprese salad.'})
+
+        await board1.addCheese(cheese2);
+        await board1.addCheese(cheese3);
+        await board2.addCheese(cheese1);
+        await board2.addCheese(cheese2);
+
+        const boardCheeses = await Board.findAll({
+            include: [
+                { model: Cheese, as: 'Cheeses'}
+            ]
+        });
+        
+        expect(boardCheeses.length).toBe(10);
+
+    })
+
+
 })
